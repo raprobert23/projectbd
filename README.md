@@ -1,8 +1,8 @@
 # projectbd
 
-# Librerias necesarias para ejecutar los scripts en python (3.7.7)
+Librerias necesarias para ejecutar los scripts en python (3.7.7)
 
-# para instalar una librería en conda (conda install --package name--)
+para instalar una librería en conda (conda install --package name--)
 
 Asegurarse de tener siempre actualizado el conda y el entorno de trabajo (conda update --all)
 
