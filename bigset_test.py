@@ -73,11 +73,9 @@ print('Class labels:', np.unique(y1_resampled))
 print('Labels counts in y_resampled:', np.bincount(y1_resampled))
 
 
-
 X1_train, X1_test, y1_train, y1_test = train_test_split(X1_resampled, y1_resampled, test_size=0.50, random_state=16, stratify=y1_resampled)
 
-
-
+###################################################################################################################################
 
 # DecisionTreeClassifier
 # https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html
@@ -101,8 +99,7 @@ print('Misclassified samples: {}'.format((y1_test != y1_pred).sum()))
 
 dump(dtc,'dtc2cards.joblib') #### Guardamos el modelo para poder usarlo en otro script
 
-
-
+###################################################################################################################################
 
 # KNeighborsClassifier
 knn = KNeighborsClassifier(n_neighbors=150)
@@ -124,8 +121,7 @@ print('Misclassified samples: {}'.format((y1_test != y1_pred).sum()))
 
 dump(knn,'knn2cards.joblib') #### Guardamos el modelo para poder usarlo en otro script
 
-
-
+###################################################################################################################################
 
 # GaussianNB
 # https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html
@@ -148,8 +144,7 @@ print('Misclassified samples: {}'.format((y1_test != y1_pred).sum()))
 
 dump(gnb,'gnb2cards.joblib') #### Guardamos el modelo para poder usarlo en otro script
 
-
-
+###################################################################################################################################
 
 # Multi-layer Perceptron classifier
 # https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html
@@ -171,12 +166,6 @@ print('Well classified samples: {}'.format((y1_test == y1_pred).sum()))
 print('Misclassified samples: {}'.format((y1_test != y1_pred).sum()))
 
 dump(mlpc,'mlpc2cards.joblib') #### Guardamos el modelo para poder usarlo en otro script
-
-
-
-
-
-############################################################################################################
 
 
 
@@ -216,8 +205,7 @@ print('Labels counts in y_resampled:', np.bincount(y2_resampled))
 
 X2_train, X2_test, y2_train, y2_test = train_test_split(X2_resampled, y2_resampled, test_size=0.50, random_state=12, stratify=y2_resampled)
 
-
-
+###################################################################################################################################
 
 # DecisionTreeClassifier
 # https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html
@@ -241,8 +229,7 @@ print('Misclassified samples: {}'.format((y2_test != y2_pred).sum()))
 
 dump(dtc2,'dtc3cards.joblib') #### Guardamos el modelo para poder usarlo en otro script
 
-
-
+###################################################################################################################################
 
 # KNeighborsClassifier
 knn2 = KNeighborsClassifier(n_neighbors=150)
@@ -264,8 +251,7 @@ print('Misclassified samples: {}'.format((y2_test != y2_pred).sum()))
 
 dump(knn2,'knn3cards.joblib') #### Guardamos el modelo para poder usarlo en otro script
 
-
-
+###################################################################################################################################
 
 # GaussianNB
 # https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html
@@ -288,8 +274,7 @@ print('Misclassified samples: {}'.format((y2_test != y2_pred).sum()))
 
 dump(gnb2,'gnb3cards.joblib') #### Guardamos el modelo para poder usarlo en otro script
 
-
-
+###################################################################################################################################
     
 # Multi-layer Perceptron classifier
 # https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html
