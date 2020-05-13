@@ -36,6 +36,18 @@ mlpc = load(mlpc2cards)
 dtcpred = dtc.predict_proba(test_data)
 print("Prediction accuracy: {}".format(dtcpred))
 
+print(dtcpred[0,0])
+print(dtcpred[0,1])
+print(dtcpred[0,2])
+print(dtcpred[0,3])
+print(dtcpred[0,4])
+print(dtcpred[0,5])
+print(dtcpred[0,6])
+print(dtcpred[0,7])
+print(dtcpred[0,8])
+print(dtcpred[0,9])
+
+
 knnpred = knn.predict_proba(test_data)
 print("Prediction accuracy: {}".format(knnpred))
 

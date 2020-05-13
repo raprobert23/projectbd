@@ -35,9 +35,19 @@ router.get("/modelo2cartas/:s1/:c1/:s2/:c2", (req, res) => {
         } else {
             res
             .status(200)
-            .send( results[2]);
+            .send({
+                nothing: results[2],
+                one_pair: results[3],
+                two_pairs: results[4],
+                trio: results[5],
+                straight: results[6],
+                flush: results[7],
+                full: results[8],
+                poker: results[9],
+                straight_flush: results[10],
+                royal_flush: results[11],
+            });
 
-            console.log(results[2]);
         }
     });
 });
