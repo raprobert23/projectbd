@@ -1,0 +1,26 @@
+{
+  "name": "projectbd",
+  "version": "1.0.0",
+  "description": "Librerias necesarias para ejecutar los scripts en python (3.7.7)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raprobert23/projectbd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raprobert23/projectbd/issues"
+  },
+  "homepage": "https://github.com/raprobert23/projectbd#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "python-shell": "^2.0.0"
+  }
+}
