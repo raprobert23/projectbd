@@ -1,13 +1,20 @@
-import pandas as pd
-import seaborn as sns
-import numpy as np
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.gaussian_process import GaussianProcessClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.neural_network import MLPClassifier
-from joblib import dump, load
 
+from joblib import dump, load
+import os
+
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+import sys
+
+s1 = int(sys.argv[1])
+c1 = int(sys.argv[2])
+s2 = int(sys.argv[3])
+c2 = int(sys.argv[4])
+
+
+dtc2cards = os.path.join(THIS_FOLDER, 'dtc2cards.joblib')
+knn2cards = os.path.join(THIS_FOLDER, 'dtc2cards.joblib')
+gnb2cards = os.path.join(THIS_FOLDER, 'dtc2cards.joblib')
+mlpc2cards = os.path.join(THIS_FOLDER, 'dtc2cards.joblib')
 
 '''
 Remember to uncomment the commented lines and delete the test_data line in order to pass the values
@@ -18,12 +25,13 @@ as the paratmethers of the function
 
 # def model2cartas (suit1,suit2,card1,card2):
 #test_data = [[suit1,card1,suit2,card2]]
-test_data = [[1, 3, 4, 8]]
+test_data = [[s1, c1, s2, c2]]
 print(test_data)
-dtc = load('dtc2cards.joblib')
-knn = load('knn2cards.joblib')
-gnb = load('gnb2cards.joblib')
-mlpc = load('mlpc2cards.joblib')
+
+dtc = load(dtc2cards)
+knn = load(knn2cards)
+gnb = load(gnb2cards)
+mlpc = load(mlpc2cards)
 
 dtcpred = dtc.predict_proba(test_data)
 print("Prediction accuracy: {}".format(dtcpred))
