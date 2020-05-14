@@ -42,7 +42,7 @@ plt.style.use('ggplot')
 
 ################# Modelo número 1 (2 cartas seleccionadas) ##################################
 
-m1 = pd.read_table("poker-hand-training-true.data", sep=",", header=None)
+m1 = pd.read_table("../project/poker-hand-training-true.data", sep=",", header=None)
 col_names = ['SUIT 1', 'CARD 1', 'SUIT 2', 'CARD 2', 'SUIT 3', 'CARD 3', 'SUIT 4', 'CARD 4', 'SUIT 5', 'CARD 5', 'HAND']
 m1.columns = col_names
 
