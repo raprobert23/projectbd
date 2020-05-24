@@ -180,7 +180,7 @@ dump(mlpc,'mlpc2cards.joblib') #### Guardamos el modelo para poder usarlo en otr
 
 ################# Modelo número 2 (3 cartas seleccionadas) ##################################
 
-m1 = pd.read_table("../project/poker-hand-training-true.data", sep=",", header=None)
+m1 = pd.read_table("poker-hand-training-true.data", sep=",", header=None)
 col_names = ['SUIT 1', 'CARD 1', 'SUIT 2', 'CARD 2', 'SUIT 3', 'CARD 3', 'SUIT 4', 'CARD 4', 'SUIT 5', 'CARD 5', 'HAND']
 m1.columns = col_names
 
@@ -319,7 +319,7 @@ dump(mlpc2,'mlpc3cards.joblib') #### Guardamos el modelo para poder usarlo en ot
 
 ################# Modelo número 3 (4 cartas seleccionadas) ##################################
 
-m1 = pd.read_table("../project/poker-hand-training-true.data", sep=",", header=None)
+m1 = pd.read_table("poker-hand-training-true.data", sep=",", header=None)
 col_names = ['SUIT 1', 'CARD 1', 'SUIT 2', 'CARD 2', 'SUIT 3', 'CARD 3', 'SUIT 4', 'CARD 4', 'SUIT 5', 'CARD 5', 'HAND']
 m1.columns = col_names
 

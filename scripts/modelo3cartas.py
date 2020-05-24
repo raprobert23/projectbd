@@ -1,14 +1,19 @@
-import pandas as pd
-import seaborn as sns
-import numpy as np
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.gaussian_process import GaussianProcessClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.neural_network import MLPClassifier 
+
 from joblib import dump, load
+import os
+
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+import sys
+
+s1 = int(sys.argv[1])
+c1 = int(sys.argv[2])
+s2 = int(sys.argv[3])
+c2 = int(sys.argv[4])
+s3 = int(sys.argv[5])
+c3 = int(sys.argv[6])
 
 
+dtc3cards = os.path.join(THIS_FOLDER, 'dtc3cards.joblib')
 
 '''
 Remember to uncomment the commented lines and delete the test_data line in order to pass the values
@@ -17,25 +22,22 @@ as the paratmethers of the function
 '''
 
 
-#def model3cartas (suit1,suit2,card1,card2,suit3,card3):
-    #test_data2 = [[suit1,card1,suit2,card2,suit3,card3]]
-    test_data2 = [[1,3,4,8,4,8]]
-    print (test_data2)
-    dtc2 = load('dtc3cards.joblib')
-    knn2 = load('knn3cards.joblib')
-    gnb2 = load('gnb3cards.joblib')
-    mlpc2 = load('mlpc3cards.joblib')
-    
-    dtcpred2 = dtc2.predict_proba(test_data2)
-    print ("Prediction accuracy: {}".format(dtcpred2))
-    
-    knnpred2 = knn2.predict_proba(test_data2)
-    print ("Prediction accuracy: {}".format(knnpred2))
-    
-    gnbpred2 = gnb2.predict_proba(test_data2)
-    print ("Prediction accuracy: {}".format(gnbpred2))
-    
-    mlpcpred2 = mlpc2.predict_proba(test_data2)
-    print ("Prediction accuracy: {}".format(mlpcpred2))
-    
-#model3cartas(1,3,4,8,4,8)
+# def model2cartas (suit1,suit2,card1,card2):
+#test_data = [[suit1,card1,suit2,card2]]
+test_data = [[s1, c1, s2, c2, s3, c3]]
+
+dtc = load(dtc3cards)
+
+dtcpred = dtc.predict_proba(test_data)
+
+
+print(round((dtcpred[0,0]),3))
+print(round((dtcpred[0,1]),3))
+print(round((dtcpred[0,2]),3))
+print(round((dtcpred[0,3]),3))
+print(round((dtcpred[0,4]),3))
+print(round((dtcpred[0,5]),3))
+print(round((dtcpred[0,6]),3))
+print(round((dtcpred[0,7]),3))
+print(round((dtcpred[0,8]),3))
+print(round((dtcpred[0,9]),3))
