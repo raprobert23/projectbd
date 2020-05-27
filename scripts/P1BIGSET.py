@@ -180,12 +180,20 @@ dump(mlpc,'mlpc2cards.joblib') #### Guardamos el modelo para poder usarlo en otr
 
 ################# Modelo número 2 (3 cartas seleccionadas) ##################################
 
-m1 = pd.read_table("poker-hand-training-true.data", sep=",", header=None)
+m2x = pd.read_table("poker-hand-training-true.data", sep=",", header=None)
 col_names = ['SUIT 1', 'CARD 1', 'SUIT 2', 'CARD 2', 'SUIT 3', 'CARD 3', 'SUIT 4', 'CARD 4', 'SUIT 5', 'CARD 5', 'HAND']
-m1.columns = col_names
+m2xcolumns = col_names
 
-X2 = m1.iloc[:,:-5]
-y2 = m1.iloc[:,-1]
+X2x = m2x.iloc[:,:-5]
+y2x = m2x.iloc[:,-1]
+
+
+m2 = pd.read_table("poker-hand-training-true.data", sep=",", header=None)
+col_names = ['SUIT 1', 'CARD 1', 'SUIT 2', 'CARD 2', 'SUIT 3', 'CARD 3', 'SUIT 4', 'CARD 4', 'SUIT 5', 'CARD 5', 'HAND']
+m2columns = col_names
+
+X2 = m2.iloc[:,:-5]
+y2 = m2.iloc[:,-1]
 
 
 
@@ -206,6 +214,8 @@ from imblearn.over_sampling import RandomOverSampler
 sm = RandomOverSampler(sampling_strategy='auto', random_state = 13)
 X2_resampled, y2_resampled = sm.fit_sample(X2, y2)
 X2_resampled = pd.DataFrame(X2_resampled, columns=X2.columns)
+X2x_resampled, y2x_resampled = sm.fit_sample(X2x, y2x)
+X2x_resampled = pd.DataFrame(X2x_resampled, columns=X2x.columns)
 
 print('Class labels:', np.unique(y2_resampled))
 print('Labels counts in y_resampled:', np.bincount(y2_resampled))
@@ -214,6 +224,7 @@ print('Labels counts in y_resampled:', np.bincount(y2_resampled))
 
 X2_train, X2_test, y2_train, y2_test = train_test_split(X2_resampled, y2_resampled, test_size=0.40, random_state=4, stratify=y2_resampled)
 
+X2x_train, X2x_test, y2x_train, y2x_test = train_test_split(X2x_resampled, y2x_resampled, test_size=0.40, random_state=4, stratify=y2x_resampled)
 
 
 
@@ -221,20 +232,20 @@ X2_train, X2_test, y2_train, y2_test = train_test_split(X2_resampled, y2_resampl
 # https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html
 # model train criterion='entropy', max_depth=2
 dtc2 = DecisionTreeClassifier(criterion='entropy', max_depth=150, random_state=10)
-dtc2.fit(X2_train, y2_train)
+dtc2.fit(X2x_train, y2x_train)
 
 
-y2_pred = dtc2.predict(X2_test)
+y2x_pred = dtc2.predict(X2x_test)
 
 # Accuracy
-accdtc2 = dtc2.score(X2_test, y2_test)
+accdtc2 = dtc2.score(X2x_test, y2x_test)
 
 print("Accuracy: {0:.2f}".format(accdtc2))
 
-print("Test set good labels: {}".format(y2_test))
-print("Test set predictions: {}".format(y2_pred))
-print('Well classified samples: {}'.format((y2_test == y2_pred).sum()))
-print('Misclassified samples: {}'.format((y2_test != y2_pred).sum()))
+print("Test set good labels: {}".format(y2x_test))
+print("Test set predictions: {}".format(y2x_pred))
+print('Well classified samples: {}'.format((y2x_test == y2x_pred).sum()))
+print('Misclassified samples: {}'.format((y2x_test != y2x_pred).sum()))
 
 dump(dtc2,'dtc3cards.joblib') #### Guardamos el modelo para poder usarlo en otro script
 
@@ -319,12 +330,21 @@ dump(mlpc2,'mlpc3cards.joblib') #### Guardamos el modelo para poder usarlo en ot
 
 ################# Modelo número 3 (4 cartas seleccionadas) ##################################
 
-m1 = pd.read_table("poker-hand-training-true.data", sep=",", header=None)
+m3x = pd.read_table("poker-hand-testing.data", sep=",", header=None)
 col_names = ['SUIT 1', 'CARD 1', 'SUIT 2', 'CARD 2', 'SUIT 3', 'CARD 3', 'SUIT 4', 'CARD 4', 'SUIT 5', 'CARD 5', 'HAND']
-m1.columns = col_names
+m3x.columns = col_names
 
-X3 = m1.iloc[:,:-3]
-y3 = m1.iloc[:,-1]
+X3x = m3x.iloc[:,:-3]
+y3x = m3x.iloc[:,-1]
+
+
+
+m3 = pd.read_table("poker-hand-training-true.data", sep=",", header=None)
+col_names = ['SUIT 1', 'CARD 1', 'SUIT 2', 'CARD 2', 'SUIT 3', 'CARD 3', 'SUIT 4', 'CARD 4', 'SUIT 5', 'CARD 5', 'HAND']
+m3.columns = col_names
+
+X3 = m3.iloc[:,:-3]
+y3 = m3.iloc[:,-1]
 
 
 
@@ -345,14 +365,17 @@ from imblearn.over_sampling import RandomOverSampler
 sm = RandomOverSampler(sampling_strategy='auto', random_state = 7)
 X3_resampled, y3_resampled = sm.fit_sample(X3, y3)
 X3_resampled = pd.DataFrame(X3_resampled, columns=X3.columns)
+X3x_resampled, y3x_resampled = sm.fit_sample(X3x, y3x)
+X3x_resampled = pd.DataFrame(X3x_resampled, columns=X3x.columns)
 
 print('Class labels:', np.unique(y3_resampled))
 print('Labels counts in y_resampled:', np.bincount(y3_resampled))
 
 
 
-X3_train, X3_test, y3_train, y3_test = train_test_split(X3_resampled, y3_resampled, test_size=0.30, random_state=23, stratify=y3_resampled)
+X3_train, X3_test, y3_train, y3_test = train_test_split(X3_resampled, y3_resampled, test_size=0.55, random_state=23, stratify=y3_resampled)
 
+X3x_train, X3x_test, y3x_train, y3x_test = train_test_split(X3x_resampled, y3x_resampled, test_size=0.55, random_state=23, stratify=y3x_resampled)
 
 
 
@@ -360,19 +383,19 @@ X3_train, X3_test, y3_train, y3_test = train_test_split(X3_resampled, y3_resampl
 # https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html
 # model train criterion='entropy', max_depth=2
 dtc3 = DecisionTreeClassifier(criterion='entropy', max_depth=150, random_state=10)
-dtc3.fit(X3_train, y3_train)
+dtc3.fit(X3x_train, y3x_train)
 
-y3_pred = dtc3.predict(X3_test)
+y3x_pred = dtc3.predict(X3x_test)
 
 # Accuracy
-accdtc3 = dtc3.score(X3_test, y3_test)
+accdtc3 = dtc3.score(X3x_test, y3x_test)
 
 print("Accuracy: {0:.2f}".format(accdtc3))
 
-print("Test set good labels: {}".format(y3_test))
-print("Test set predictions: {}".format(y3_pred))
-print('Well classified samples: {}'.format((y3_test == y3_pred).sum()))
-print('Misclassified samples: {}'.format((y3_test != y3_pred).sum()))
+print("Test set good labels: {}".format(y3x_test))
+print("Test set predictions: {}".format(y3x_pred))
+print('Well classified samples: {}'.format((y3x_test == y3x_pred).sum()))
+print('Misclassified samples: {}'.format((y3x_test != y3x_pred).sum()))
 
 dump(dtc3,'dtc4cards.joblib') #### Guardamos el modelo para poder usarlo en otro script
 
@@ -446,6 +469,7 @@ print('Well classified samples: {}'.format((y3_test == y3_pred).sum()))
 print('Misclassified samples: {}'.format((y3_test != y3_pred).sum()))
 
 dump(mlpc3,'mlpc4cards.joblib') #### Guardamos el modelo para poder usarlo en otro script
+
 
 
 
